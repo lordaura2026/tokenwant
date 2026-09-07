@@ -551,14 +551,11 @@ section h2 { font-size: clamp(22px, 2.8vw, 38px); line-height: 1.2; letter-spaci
 .tld-line { font-size: clamp(18px, 2.3vw, 32px); margin-top: 6px; }
 .tld-line .sale-tag { font-size: 0.55em; font-weight: 700; letter-spacing: 0.14em; color: var(--red); white-space: nowrap; }
 .cta-tld { margin-top: 12px; font-size: clamp(20px, 2.8vw, 46px); }
-.tlds span::after { content: " · "; }
+.tlds { display: flex; flex-direction: column; align-items: center; }
+.tlds > b { display: flex; flex-direction: column; align-items: center; }
+.tlds span::after { content: ""; }
 .tlds span:last-child::after { content: ""; }
-@media (max-width: 480px) {
-  .tlds { display: flex; flex-direction: column; align-items: center; }
-  .tlds > b { display: flex; flex-direction: column; align-items: center; gap: 2px; }
-  .tlds span::after { content: ""; }
-  .tlds .sale-tag { margin-top: 4px; }
-}
+.tlds .sale-tag { margin-top: 6px; }
 .solo { font-size: clamp(14px, 1.7vw, 24px); line-height: 1.55; margin-top: 4px; }
 .solo.soft { font-size: clamp(12px, 1.5vw, 21px); }
 .solo.big { font-size: clamp(17px, 2.1vw, 30px); line-height: 1.55; margin-top: 6px; }
@@ -649,3 +646,33 @@ body * { max-width: 100%; }
   .q-val { font-size: clamp(16px, 4.6vw, 22px); }
   .price-num { font-size: clamp(44px, 13vw, 64px); }
 }
+
+/* =========================================================
+   纯白背景 + 688 万红色加粗
+   ========================================================= */
+body, main, .hero, .vision, .manifesto, .claims, .price, .worth,
+.market, .cta-sect, .contact, .footer, .nav {
+  background: #ffffff;
+  background-image: none !important;
+}
+.price-num {
+  background: none !important;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  color: var(--red);
+  font-weight: 900;
+}
+.price-num b, .price-num span { color: var(--red); font-weight: 900; }
+.vision-tag { font-weight: 900; font-size: clamp(20px, 5.6vw, 86px); line-height: 1.2; }
+.vision-tag .red { font-weight: 900; }
+.vision-zen {
+  margin: 10px auto 0;
+  font-size: clamp(15px, 1.8vw, 22px);
+  color: #57462b;
+  letter-spacing: 0.18em;
+  text-indent: 0.18em;
+  line-height: 2;
+}
+.vision-zen .red { font-weight: 800; }
+.market .three-lines { color: var(--red); font-size: clamp(15px, 2vw, 26px); font-weight: 500; text-align: center; max-width: none; width: 100%; }
+main { text-align: center; }
