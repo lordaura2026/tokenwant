@@ -619,28 +619,35 @@ body * { max-width: 100%; }
   position: relative;
 }
 @media (max-width: 720px) {
-  .want-hero { font-size: clamp(40px, 15vw, 90px); }
+  .want-hero { white-space: normal; font-size: clamp(28px, 9vw, 60px); line-height: 1.25; }
 }
 
 /* =========================================================
    窄屏（≤480px / iPhone 8 375px）：整句单行与 PC 一致
    ========================================================= */
 @media (max-width: 480px) {
-  .intro-big { font-size: clamp(9px, 2.9vw, 15px); }
-  .solo { font-size: clamp(9px, 2.7vw, 14px); }
-  .solo.soft { font-size: clamp(8px, 2.5vw, 13px); }
-  .solo.big { font-size: clamp(9px, 2.9vw, 15px); }
-  .pairline { font-size: clamp(9px, 2.7vw, 14px); }
-  .final-tagline { font-size: clamp(9px, 2.7vw, 14px); }
+  .intro-big, .solo, .solo.soft, .solo.big, .pairline, .final-tagline,
+  .manifesto .m-line, .manifesto .m-punch, .claim p, .market .kick,
+  .vision-zen, .want-hero { white-space: nowrap; }
+
+  .intro-big { font-size: clamp(8px, 2.8vw, 14px); }
+  .solo { font-size: clamp(8px, 2.5vw, 13px); }
+  .solo.soft { font-size: clamp(7px, 2.2vw, 11px); }
+  .solo.big { font-size: clamp(9px, 2.8vw, 14px); }
+  .pairline { font-size: clamp(8px, 2.5vw, 13px); }
+  .final-tagline { font-size: clamp(8px, 2.5vw, 13px); }
+  .manifesto .m-line { font-size: clamp(9px, 3vw, 15px); }
+  .manifesto .m-punch { font-size: clamp(10px, 3.2vw, 16px); }
+  .claim p { font-size: clamp(10px, 3.2vw, 16px); }
+  .market .kick { font-size: clamp(10px, 3.2vw, 16px); }
+  .vision-zen { font-size: clamp(8px, 2.8vw, 14px); letter-spacing: 0.02em; text-indent: 0; }
+
   .hero-title { font-size: clamp(32px, 9.5vw, 44px); }
-  .hero-punch { font-size: clamp(30px, 9vw, 42px); }
-  .hero-sub { font-size: clamp(20px, 6vw, 30px); }
-  .manifesto .m-line { font-size: clamp(15px, 4.6vw, 22px); }
-  .manifesto .m-punch { font-size: clamp(19px, 5.6vw, 28px); }
-  .claim p { font-size: clamp(17px, 4.8vw, 24px); }
+  .hero-punch { font-size: clamp(24px, 7.5vw, 36px); }
+  .hero-sub { font-size: clamp(18px, 5.5vw, 28px); }
+  .want-hero { font-size: clamp(24px, 8vw, 42px); }
   .body { font-size: clamp(12px, 3.6vw, 16px); }
-  .market .kick { font-size: clamp(16px, 4.8vw, 24px); }
-  .market .three-lines { font-size: clamp(11px, 3.4vw, 15px); }
+  .market .three-lines { font-size: clamp(10px, 3vw, 14px); }
   .cta-title { font-size: clamp(18px, 5vw, 26px); }
   .cta-name { font-size: clamp(20px, 5.6vw, 28px); }
   .q-val { font-size: clamp(16px, 4.6vw, 22px); }
@@ -663,17 +670,21 @@ body, main, .hero, .vision, .manifesto, .claims, .price, .worth,
   font-weight: 900;
 }
 .price-num b, .price-num span { color: var(--red); font-weight: 900; }
-.vision-tag { font-weight: 900; font-size: clamp(20px, 5.6vw, 86px); line-height: 1.2; }
+.vision-tag { font-weight: 900; font-size: clamp(24px, 8.5vw, 150px); line-height: 1.15; }
 .vision-tag .red { font-weight: 900; }
 .vision-zen {
-  margin: 10px auto 0;
-  font-size: clamp(15px, 1.8vw, 22px);
+  margin: 12px auto 0;
+  font-size: clamp(22px, 4.6vw, 76px);
+  font-weight: 700;
   color: #57462b;
-  letter-spacing: 0.18em;
-  text-indent: 0.18em;
-  line-height: 2;
+  letter-spacing: 0.12em;
+  text-indent: 0.12em;
+  line-height: 1.7;
 }
-.vision-zen .red { font-weight: 800; }
+.vision-zen .red { font-weight: 900; }
+.hero-title .kw { color: #171713; }
+.hero-title .blue { color: #0050ff; }
+.footer p { font-size: 12px; }
 .market .three-lines { color: var(--red); font-size: clamp(15px, 2vw, 26px); font-weight: 500; text-align: center; max-width: none; width: 100%; }
 main { text-align: center; }
 main h1, main h2, main h3, main h4, main p, main ul, main li,
