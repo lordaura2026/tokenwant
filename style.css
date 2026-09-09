@@ -1,699 +1,532 @@
 /* =========================================================
-   TOKENWANT — 四件套顶级域名
-   白 × 鎏金 · 极简 · 大公司官网质感（Apple 式留白与节奏）
+   TokenWant 品牌官网（最终版）
+   红 + 白 · 干净 · 权威 · 专业
    ========================================================= */
 
 :root {
-  --white: #ffffff;
-  --paper: #faf8f3;          /* 极淡暖白，用于段落区底色起伏 */
-  --ink: #171713;            /* 近黑，主文字 */
-  --ink-soft: #3d3a33;
-  --gray: #86827a;           /* 次级灰 */
-  --gold: #a67e2e;           /* 鎏金 */
-  --red: #c8102e;            /* 强调红 */
-  --grad-gold: linear-gradient(100deg, #f2dfa9 0%, #e3c071 34%, #c99b41 60%, #9a7328 100%);
-  --hairline: rgba(23, 23, 19, 0.08);
-  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI",
-          "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --red: #cc0000;
+  --red-soft: #fff4f4;
+  --red-line: #f2d3d3;
+  --ink: #171717;
+  --body: #333333;
+  --gray: #666666;
+  --light: #999999;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html {
+  overflow-x: clip;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
 
 body {
-  font-family: var(--font);
-  color: var(--ink);
-  background: var(--white);
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+  background: #ffffff;
+  color: var(--body);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
   line-height: 1.7;
-  overflow-x: hidden;
+  overflow-x: clip;
+  touch-action: pan-y;
+  overscroll-behavior-x: none;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
-::selection { background: #e9d8a8; color: var(--ink); }
+body * { max-width: 100%; }
+img, svg, canvas { max-width: 100%; height: auto; }
 a { color: inherit; text-decoration: none; }
 ul { list-style: none; }
+b { font-weight: 700; }
 
-/* 鎏金渐变字 */
-.gold {
-  background: var(--grad-gold);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  font-weight: inherit;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  text-align: center;
 }
 
-/* 红色粗体强调字（关键卖点/结论） */
-.red {
-  color: var(--red);
-  font-weight: 800;
+section[id] { scroll-margin-top: 90px; }
+
+/* ---------- 顶部导航 ---------- */
+.top {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: #ffffff;
+  border-bottom: 1px solid var(--red-line);
 }
-
-.wide { display: inline; }
-
-/* ---------------- 极简顶栏 ---------------- */
-.nav {
-  position: fixed;
-  inset: 0 0 auto 0;
-  z-index: 60;
-  height: 52px;
+.top-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 max(24px, calc((100vw - 980px) / 2));
-  background: rgba(255, 255, 255, 0.82);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  padding-top: 18px;
+  padding-bottom: 18px;
 }
-.nav-brand {
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 0.22em;
+.brand {
+  font-weight: 900;
+  font-size: 22px;
+  letter-spacing: 4px;
   color: var(--ink);
 }
-.nav-links { display: flex; gap: clamp(18px, 3vw, 34px); }
-.nav-links a {
-  font-size: 13px;
-  color: var(--ink-soft);
-  transition: color 0.25s;
+.nav { display: flex; gap: 32px; }
+.nav a {
+  position: relative;
+  font-size: 14px;
+  color: #4a4a4a;
+  font-weight: 500;
+  letter-spacing: 1px;
+  transition: color 0.2s;
 }
-.nav-links a:hover { color: var(--gold); }
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  width: 0;
+  height: 2px;
+  background: var(--red);
+  transform: translateX(-50%);
+  transition: width 0.25s ease;
+}
+.nav a:hover { color: var(--red); }
+.nav a:hover::after { width: 100%; }
+.nav .nav-cta { color: var(--red); font-weight: 700; }
 
-/* ---------------- 首屏 ---------------- */
-.hero {
-  min-height: 100svh;
-  padding: calc(84px + 5vh) 24px 4vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background:
-    radial-gradient(1000px 620px at 50% -8%, #fbf6e9 0%, rgba(251, 246, 233, 0) 62%),
-    radial-gradient(760px 500px at 50% 118%, rgba(240, 228, 190, 0.35) 0%, rgba(240, 228, 190, 0) 60%),
-    var(--white);
-}
-.eyebrow {
-  font-size: clamp(12px, 1.3vw, 15px);
-  letter-spacing: 0.46em;
-  text-indent: 0.46em;
-  color: var(--gold);
-  font-weight: 600;
-}
-.hero-title {
-  font-size: clamp(58px, 12vw, 172px);
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: 0.02em;
-  color: var(--ink);
-  margin: clamp(12px, 2.2vh, 24px) 0 0;
-}
-.hero-punch {
-  font-size: clamp(30px, 3.9vw, 56px);
-  font-weight: 800;
-  margin-top: clamp(12px, 2vh, 20px);
+/* ---------- 通用区块 ---------- */
+.sec { padding: 100px 0; text-align: center; }
+.sec + .sec { border-top: 1px solid #f7e6e6; }
+
+h2.h2 {
   color: var(--red);
+  font-weight: 900;
+  font-size: clamp(27px, 4.3vw, 54px);
+  line-height: 1.3;
+  letter-spacing: 1px;
+}
+.h2.sub {
+  display: block;
+  color: var(--ink);
+  font-size: clamp(20px, 2.6vw, 34px);
+  font-weight: 800;
+  margin-top: 10px;
+}
+
+.red { color: var(--red); }
+.b { font-weight: 700; }
+
+.lead {
+  max-width: 900px;
+  margin: 20px auto 0;
+  font-size: clamp(15px, 1.75vw, 19.5px);
+  line-height: 1.9;
+  color: var(--body);
+}
+
+.body-mid {
+  max-width: 900px;
+  margin: 20px auto 0;
+  font-size: clamp(18px, 2.1vw, 24px);
+  line-height: 1.85;
+  color: var(--body);
+}
+
+.bigred {
+  max-width: 1040px;
+  margin: 36px auto 0;
+  color: var(--red);
+  font-weight: 800;
+  font-size: clamp(20px, 2.9vw, 36px);
+  line-height: 1.65;
+}
+.bigred.punch { margin-top: 48px; }
+
+.note {
+  color: var(--light);
+  font-size: 13px;
+  margin-top: 14px;
+}
+.en {
+  color: #5a5a5a;
+  font-weight: 600;
+  font-size: clamp(14px, 1.6vw, 18px);
+  letter-spacing: 0.6px;
+  margin-top: 18px;
+}
+.line-words { margin-top: 24px; }
+
+/* ---------- Hero ---------- */
+.sec.hero { padding: 140px 0 150px; }
+.hero-title {
+  color: var(--red);
+  font-weight: 900;
+  font-size: clamp(42px, 7.2vw, 102px);
+  line-height: 1.15;
+  letter-spacing: 1px;
 }
 .hero-sub {
-  font-size: clamp(13px, 1.4vw, 17px);
-  color: var(--gray);
-  letter-spacing: 0.32em;
-  text-indent: 0.32em;
-  margin-top: 10px;
+  color: #5a5a5a;
+  font-size: clamp(17px, 2vw, 23px);
+  margin-top: 18px;
+  letter-spacing: 1px;
 }
-
-/* ---------------- 各段通栏 ---------------- */
-section {
-  padding: clamp(120px, 17vh, 200px) 24px;
-  scroll-margin-top: 52px;
-  text-align: center;
-}
-section h2 {
-  font-size: clamp(32px, 4.6vw, 58px);
-  font-weight: 700;
-  line-height: 1.3;
-  letter-spacing: 0.02em;
-}
-.sec-tag {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.52em;
-  text-indent: 0.52em;
-  color: var(--gold);
-  margin-bottom: 18px;
-}
-.sec-sub {
-  color: var(--gray);
-  font-size: clamp(14px, 1.5vw, 18px);
-  margin-top: 10px;
-  letter-spacing: 0.12em;
-}
-
-/* 愿景 */
-.vision { background: linear-gradient(180deg, var(--white), var(--paper)); }
-.lead {
-  max-width: 34em;
-  margin: 34px auto 0;
-  font-size: clamp(17px, 1.9vw, 23px);
-  color: var(--ink-soft);
-  line-height: 1.9;
-}
-
-/* 一口价 金色光晕 */
-.price {
-  background:
-    radial-gradient(820px 420px at 50% 100%, rgba(230, 201, 128, 0.32) 0%, rgba(230, 201, 128, 0) 64%);
-}
-
-/* ---------------- 品牌宣言 ---------------- */
-.manifesto {
-  padding: clamp(160px, 22vh, 260px) 24px;
-  text-align: center;
-  background:
-    radial-gradient(900px 500px at 50% -14%, rgba(246, 235, 204, 0.85) 0%, rgba(246, 235, 204, 0) 62%);
-}
-.m-line {
-  font-size: clamp(26px, 3.6vw, 54px);
-  font-weight: 500;
-  color: var(--ink-soft);
-  line-height: 1.7;
-  letter-spacing: 0.04em;
-}
-.m-line .gold { font-weight: 700; }
-.m-punch {
-  margin-top: clamp(36px, 6.5vh, 80px);
-  font-size: clamp(40px, 6.6vw, 106px);
-  font-weight: 700;
-  line-height: 1.3;
-  letter-spacing: 0.02em;
-}
-.m-punch .gold { font-weight: 700; }
-
-/* ---------------- 品牌主张 ---------------- */
-.claims { background: linear-gradient(180deg, var(--paper), var(--white)); }
-.claim {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  align-items: baseline;
-  gap: clamp(20px, 3vw, 42px);
-  justify-items: start;
-  width: min(900px, 100%);
-  margin: 0 auto;
-  padding: clamp(30px, 6vh, 64px) 4px;
-  border-top: 1px solid var(--hairline);
-}
-.claim:last-child { border-bottom: 1px solid var(--hairline); }
-.claim p {
+.hero-words {
+  color: var(--red);
+  font-weight: 900;
   font-size: clamp(23px, 3.2vw, 44px);
-  font-weight: 600;
-  line-height: 1.5;
-  text-align: left;
-  letter-spacing: 0.01em;
-}
-.claim .idx {
-  font-size: 0.5em;
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
+  margin-top: 30px;
+  letter-spacing: 4px;
 }
 
-/* ---------------- 域名资产 ---------------- */
-.domains { background: linear-gradient(180deg, var(--white), var(--paper)); }
-.port-list { margin-top: clamp(52px, 8vh, 84px); }
-.port {
-  display: block;
-  padding: clamp(24px, 4.6vh, 46px) 4px;
-  border-top: 1px solid var(--hairline);
-  transition: opacity 0.3s;
-}
-.port-list li:last-child .port { border-bottom: 1px solid var(--hairline); }
-.port:hover { opacity: 0.55; }
-.port-name {
-  display: block;
-  font-size: clamp(32px, 5.4vw, 72px);
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: 0.01em;
-}
-.port-desc {
-  display: block;
-  margin-top: 8px;
-  font-size: clamp(12px, 1.3vw, 15px);
-  color: var(--gray);
-  letter-spacing: 0.24em;
-}
-
-/* ---------------- 一口价 ---------------- */
-.price-num {
-  font-weight: 700;
-  font-size: clamp(84px, 15vw, 210px);
-  line-height: 1;
-  letter-spacing: -0.01em;
-  background: var(--grad-gold);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  font-variant-numeric: tabular-nums;
-}
-.price-num span { font-size: 0.34em; margin-left: 0.14em; letter-spacing: 0.14em; }
-
-/* ---------------- 联系 ---------------- */
-.contact { background: linear-gradient(180deg, var(--paper), var(--white)); }
-.inquiry { width: min(620px, 100%); margin: 46px auto 0; }
-.inquiry li {
+/* ---------- 模块二：域名全家桶 ---------- */
+.dgrid {
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 24px;
-  padding: clamp(20px, 3.4vh, 30px) 2px;
-  border-top: 1px solid var(--hairline);
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px 26px;
+  margin-top: 52px;
 }
-.inquiry li:last-child { border-bottom: 1px solid var(--hairline); }
-.q-key {
-  color: var(--gray);
-  font-size: 14px;
-  letter-spacing: 0.28em;
+.dn {
+  font-weight: 900;
+  color: var(--ink);
+  font-size: clamp(22px, 3.6vw, 48px);
+  letter-spacing: 1px;
   white-space: nowrap;
 }
-.q-val {
-  font-size: clamp(20px, 2.6vw, 32px);
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  word-break: break-all;
-}
-.inquiry a.q-val { transition: color 0.25s; }
-.inquiry a.q-val:hover { color: var(--gold); }
+.dn .ext { color: var(--red); }
 
-/* ---------------- 页脚 ---------------- */
-.footer {
-  padding: 60px 24px 70px;
-  text-align: center;
-  border-top: 1px solid var(--hairline);
-}
-.footer p { font-size: 14px; letter-spacing: 0.08em; color: var(--ink-soft); }
-.footer .sub { margin-top: 8px; font-size: 12px; color: var(--gray); letter-spacing: 0.14em; }
-
-/* =========================================================
-   销售叙事 · 大气版面
-   ========================================================= */
-
-/* 大标题与独句 */
-.intro-big {
-  font-size: clamp(34px, 5.2vw, 78px);
-  font-weight: 700;
-  line-height: 1.5;
-  letter-spacing: 0.02em;
-  color: var(--ink);
-  max-width: 24em;
-  margin: 0 auto;
-}
-.solo {
-  font-size: clamp(24px, 3.4vw, 48px);
-  font-weight: 600;
-  line-height: 1.7;
-  color: var(--ink);
-  max-width: 28em;
-  margin: clamp(36px, 6vh, 64px) auto 0;
-}
-.solo.soft {
-  font-weight: 500;
-  color: var(--gray);
-  font-size: clamp(20px, 2.6vw, 34px);
-  margin-top: clamp(8px, 1.2vh, 14px);
-}
-.solo.big {
-  font-weight: 700;
-  font-size: clamp(30px, 4.6vw, 64px);
-  margin-top: clamp(56px, 9vh, 96px);
-  max-width: 24em;
-}
-.note {
-  margin-top: clamp(44px, 7vh, 76px);
-  color: var(--muted);
-  font-size: clamp(14px, 1.5vw, 18px);
-  letter-spacing: 0.3em;
-}
-
-/* 对比表 */
-.cmp { width: min(1040px, 100%); margin: clamp(34px, 6vh, 56px) auto 0; text-align: left; }
-.cmp-row {
+/* ---------- 双语双行对比（Want=旺） ---------- */
+.vs2 {
+  max-width: 840px;
+  margin: 46px auto 0;
   display: grid;
-  grid-template-columns: minmax(220px, 0.9fr) 2fr;
-  gap: clamp(18px, 3vw, 46px);
-  align-items: baseline;
-  padding: clamp(22px, 3.6vh, 32px) 2px;
-  border-top: 1px solid var(--hairline);
+  gap: 12px;
 }
-.cmp-row.head { border-top: none; padding-bottom: 8px; }
-.cmp-row.head span {
-  font-size: 12px;
+.vline {
+  padding: 6px 4px;
+  font-size: clamp(15px, 1.9vw, 20px);
   font-weight: 600;
-  letter-spacing: 0.3em;
-  color: var(--gold);
+  color: var(--body);
 }
-.c1 { font-size: clamp(17px, 1.9vw, 23px); font-weight: 700; line-height: 1.6; }
-.c2 { font-size: clamp(15px, 1.7vw, 19px); color: var(--ink-soft); line-height: 1.9; }
-
-/* TokenWant 对比收束 */
-.punchline {
-  margin-top: clamp(52px, 8.5vh, 88px);
-  font-size: clamp(40px, 6vw, 92px);
+.bk { color: var(--body); font-weight: 700; }
+.wlist {
+  color: var(--red);
   font-weight: 800;
-  line-height: 1.4;
+  letter-spacing: 1px;
+  font-size: clamp(16px, 1.9vw, 22px);
 }
 
-/* 阅读宽正文 */
-.body {
-  max-width: min(780px, 100%);
-  margin: clamp(30px, 5vh, 50px) auto 0;
-  font-size: clamp(16px, 1.7vw, 19px);
-  color: var(--ink-soft);
-  line-height: 2.1;
+/* ---------- 大数字 / 表格 ---------- */
+.num {
+  color: var(--red);
+  font-weight: 900;
+  font-size: clamp(64px, 12vw, 160px);
+  line-height: 1.05;
+  margin-top: 36px;
+  letter-spacing: 1px;
+  font-variant-numeric: tabular-nums;
+}
+.dnum {
+  font-size: clamp(34px, 5.4vw, 66px);
+  margin-top: 0;
+  word-break: keep-all;
+}
+.dnum.small2 { font-size: clamp(24px, 3.6vw, 44px); }
+
+.twrap { margin: 36px auto 0; max-width: 1020px; overflow-x: auto; }
+.tbl {
+  width: 100%;
+  border-collapse: collapse;
   text-align: left;
+  font-size: clamp(13px, 1.5vw, 16px);
 }
-.narr { max-width: min(780px, 100%); margin: clamp(10px, 1.5vh, 16px) auto 0; }
-.narr .body { margin-top: clamp(20px, 3vh, 30px); }
-
-/* 2005 / 2026 对比行 */
-.pairline {
-  font-size: clamp(22px, 3vw, 42px);
-  line-height: 1.9;
-  max-width: 28em;
-  margin: clamp(26px, 4vh, 40px) auto 0;
-}
-.pairline span, .pairline b { display: block; }
-.pairline b { font-weight: 700; color: var(--ink); }
-.pairline .gold { font-weight: 800; }
-
-/* CTA */
-.cta-title { font-size: clamp(38px, 5.8vw, 84px); font-weight: 800; line-height: 1.4; }
-.cta-brand {
-  margin-top: clamp(64px, 10vh, 112px);
-  font-size: clamp(30px, 4.6vw, 66px);
+.tbl th {
+  background: var(--red-soft);
+  color: #a40000;
   font-weight: 800;
-  line-height: 1.5;
+  padding: 15px 16px;
+  border-bottom: 2px solid var(--red);
+  white-space: nowrap;
+  letter-spacing: 1px;
 }
-.cta-brand span {
-  display: block;
-  font-size: 0.5em;
-  font-weight: 500;
+.tbl td {
+  padding: 15px 16px;
+  border-bottom: 1px solid #f2e5e5;
+  color: var(--body);
+  line-height: 1.75;
+  vertical-align: middle;
+}
+.tbl th:nth-child(2) { text-align: center; }
+.tbl td:nth-child(2) {
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+.tbl tr:last-child td { border-bottom: none; }
+
+.price-tbl td { white-space: nowrap; }
+.up::before { content: "↗ "; }
+.down::before { content: "↘ "; }
+.flat::before { content: "→ "; }
+
+/* ---------- 对比表（模块五 · 无框扁平） ---------- */
+.gtable {
+  max-width: 1080px;
+  margin: 48px auto 0;
+}
+.grow {
+  display: grid;
+  grid-template-columns: 170px 1fr 1fr 1fr;
+}
+.grow > span {
+  padding: 14px 14px;
+  font-size: clamp(13px, 1.4vw, 16px);
+  text-align: left;
+  border-bottom: 1px solid #f0f0f0;
+}
+.grow:last-child > span { border-bottom: none; }
+.grow.gh > span {
+  color: var(--red);
+  font-weight: 800;
+  text-align: center;
+  border-bottom: 1px solid var(--red-line);
+}
+.grow .lbl {
+  color: var(--red);
+  font-weight: 800;
+}
+
+/* ---------- 四格清单（困扰 / 谁需要 · 无卡片） ---------- */
+.cards, .whogrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 38px 30px;
+  max-width: 1080px;
+  margin: 48px auto 0;
+}
+.card {
+  text-align: center;
+}
+.card h4 {
+  color: var(--red);
+  font-weight: 800;
+  font-size: clamp(18px, 1.9vw, 24px);
+  margin-bottom: 10px;
+}
+.card p {
+  color: var(--body);
+  font-size: clamp(13px, 1.4vw, 16px);
+  line-height: 1.8;
+}
+.card p.red { font-weight: 800; }
+.card .red { margin-top: 12px; }
+
+/* ---------- 四大功能 ---------- */
+.f { max-width: 780px; margin: 52px auto 0; text-align: center; }
+.f h3 {
+  color: var(--red);
+  font-weight: 900;
+  font-size: clamp(20px, 2.4vw, 30px);
+  margin-bottom: 14px;
+}
+.f p {
+  color: var(--body);
+  font-size: clamp(14px, 1.6vw, 18px);
+  margin-top: 10px;
+  line-height: 2;
+}
+.punch-sm {
+  font-weight: 800;
+  font-size: clamp(17px, 1.9vw, 23px);
+  margin-top: 18px;
+}
+
+/* ---------- 市场数据（无卡片） ---------- */
+.datacards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px 30px;
+  max-width: 1080px;
+  margin: 52px auto 0;
+}
+.dcol {
+  padding: 6px 4px;
+}
+.dcol p {
   color: var(--gray);
-  letter-spacing: 0.12em;
+  font-size: clamp(13px, 1.4vw, 16px);
   margin-top: 8px;
 }
+.dcol p.red { color: var(--red); font-weight: 800; }
 
-/* 首屏外元素补充 */
-.tld-line {
-  margin-top: clamp(30px, 5vh, 46px);
-  font-size: clamp(20px, 2.4vw, 32px);
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  color: var(--gold-deep, var(--gold));
+/* ---------- 时间线 / 故事列表 ---------- */
+.tl {
+  max-width: 720px;
+  margin: 36px auto 0;
 }
-.cta-sub {
-  margin-top: 14px;
+.tl p {
   font-size: clamp(15px, 1.8vw, 21px);
-  color: var(--ink-soft);
-  letter-spacing: 0.12em;
+  padding: 12px 0;
+  border-bottom: 1px solid #f7e0e0;
 }
-.final-tagline {
-  margin-top: clamp(56px, 9vh, 96px);
-  font-size: clamp(26px, 3.8vw, 56px);
-  font-weight: 700;
-  line-height: 1.9;
-  color: var(--ink);
-}
+.tl p:last-child { border-bottom: none; }
 
-/* 全局居中排版：所有内容收进中间内容列，两侧留白 */
-.port-list,
-.m-line,
-.m-punch,
-.claim,
-.inquiry,
-.cmp,
-.narr,
-.lead,
-.note,
-.tld-line,
-.cta-title,
-.cta-sub,
-.cta-brand,
-.final-tagline,
-.intro-big,
-.solo,
-.pairline,
-.body {
-  margin-left: auto;
-  margin-right: auto;
-}
-.m-line, .m-punch { width: fit-content; max-width: 100%; }
-
-/* ---------------- 响应式 ---------------- */
-@media (max-width: 720px) {
-  .nav-links { display: none; }
-  .nav { justify-content: center; }
-  .wide { display: none; }
-  .claim { width: 100%; grid-template-columns: auto 1fr; }
-  .inquiry li { flex-direction: column; align-items: flex-start; gap: 6px; }
-  .hero { min-height: auto; padding-top: 110px; }
-
-  .cmp-row { grid-template-columns: 1fr; gap: 8px; }
-  .eyebrow { letter-spacing: 0.22em; text-indent: 0.22em; font-size: 11px; }
-  .hero-sub { letter-spacing: 0.18em; text-indent: 0.18em; }
+.storylist { margin-top: 22px; text-align: center; }
+.storylist li {
+  display: inline-block;
+  font-size: clamp(15px, 1.8vw, 20px);
+  color: var(--body);
+  margin: 8px 20px;
+  font-weight: 600;
 }
 
-/* =========================================================
-   整句单行排版：关键整句按视口自适应字号，一句一行
-   ========================================================= */
-.intro-big { font-size: clamp(12px, 3.5vw, 48px); }
-.solo { font-size: clamp(9px, 2.9vw, 44px); }
-.solo.soft { font-size: clamp(11px, 2.5vw, 32px); }
-.solo.big { font-size: clamp(12px, 3.8vw, 56px); }
-.pairline { font-size: clamp(11px, 2.9vw, 40px); }
-.final-tagline { font-size: clamp(12px, 3.6vw, 50px); }
-.tld-line { font-size: clamp(10px, 2vw, 30px); }
-.cta-name { margin-top: 4px; font-size: clamp(20px, 4.6vw, 68px); }
-
-/* 整句强制不折行（字号已按宽度自适应，保证一句一行） */
-.intro-big, .solo, .solo.soft, .solo.big, .pairline,
-.final-tagline, .tld-line, .cta-title { white-space: nowrap; }
-
-/* =========================================================
-   全局居中对齐修正（消除所有偏左排版）
-   ========================================================= */
-.claim { justify-content: center; justify-items: center; text-align: center; }
-.claim p, .claim .idx { text-align: center; }
-
-.cmp-row { text-align: center; }
-.cmp-row.head { text-align: center; }
-.c1, .c2 { text-align: center; }
-
-.port, .port-link { display: block; text-align: center; }
-.port-name, .port-desc { text-align: center; }
-
-.body, .lead, .narr .body, .note, .sec-sub { text-align: center; }
-
-.inquiry li { display: block; text-align: center; }
-.q-key, .q-val { text-align: center; white-space: normal; }
-
-.pairline, .pairline span, .pairline b { text-align: center; }
-.punchline { text-align: center; }
-
-/* =========================================================
-   苹果式 · 适度紧凑：单栏居中、舒展留白、清晰模块
-   ========================================================= */
-section { padding-block: clamp(12px, 2vh, 20px); }
-section h2 { font-size: clamp(22px, 2.8vw, 38px); line-height: 1.2; letter-spacing: 0.01em; }
-.sec-tag { margin-bottom: 4px; font-size: 10px; }
-.sec-sub { margin-top: 2px; font-size: clamp(12px, 1.3vw, 16px); }
-.lead { margin-top: 8px; font-size: clamp(13px, 1.5vw, 18px); line-height: 1.75; }
-.note { margin-top: 6px; font-size: clamp(12px, 1.2vw, 15px); letter-spacing: 0.04em; }
-
-/* 首屏：Apple 式居中大标题 + 中置海报 */
-.hero {
+/* ---------- CTA ---------- */
+.cta-sec { padding-bottom: 96px; }
+.slogan-h { line-height: 1.3; }
+.contact-line {
+  margin-top: 50px;
+  color: var(--gray);
+  font-weight: 800;
+  font-size: clamp(18px, 2.4vw, 30px);
+  letter-spacing: 3px;
+}
+.contact-title {
+  margin-top: 16px;
+  color: var(--gray);
+  font-weight: 600;
+  font-size: clamp(13px, 1.4vw, 17px);
+  letter-spacing: 2px;
+}
+.contact-chips {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  text-align: center;
-  min-height: 0;
-  padding: clamp(34px, 4.6vh, 56px) 24px clamp(10px, 1.6vh, 16px);
+  gap: 16px;
+  margin-top: 30px;
 }
-.hero .eyebrow { margin-bottom: 2px; font-size: clamp(9px, 1vw, 13px); letter-spacing: 0.26em; }
-.hero-title { font-size: clamp(40px, 6.2vw, 84px); margin-top: 0; line-height: 1.02; }
-.hero-punch { font-size: clamp(34px, 8.5vw, 170px); font-weight: 900; line-height: 1.1; margin-top: 2px; white-space: nowrap; }
-.hero-sub { font-size: clamp(22px, 6.5vw, 120px); font-weight: 900; color: var(--red); letter-spacing: 0.06em; margin-top: 2px; white-space: nowrap; }
-
-/* 宣言 / 主张 / 域名：发丝线分隔的编辑部式列表 */
-.manifesto { padding-block: clamp(6px, 1vh, 10px); }
-.m-line { font-size: clamp(22px, 2.6vw, 36px); font-weight: 700; line-height: 1.5; }
-.m-line .red { font-weight: 800; }
-.m-punch { font-size: clamp(24px, 2.9vw, 40px); line-height: 1.25; margin-top: 2px; }
-.claim { padding-block: clamp(9px, 1.4vh, 14px); }
-.claim p { font-size: clamp(20px, 2.3vw, 32px); line-height: 1.28; }
-.claim .idx { font-size: 0.5em; }
-.port-list { margin-top: clamp(12px, 2vh, 18px); }
-.port {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: baseline;
-  column-gap: 16px;
-  padding-block: clamp(8px, 1.2vh, 12px);
-}
-.port-name { display: inline; font-size: clamp(24px, 2.8vw, 40px); line-height: 1.15; }
-.port-desc { display: inline; margin-top: 0; font-size: clamp(10px, 1.1vw, 14px); letter-spacing: 0.02em; }
-
-/* 价格与对比 */
-.price { padding-block: clamp(22px, 3.6vh, 36px); }
-.price-num { font-size: clamp(54px, 8.4vw, 120px); line-height: 1.05; }
-.intro-big { font-size: clamp(20px, 2.5vw, 34px); line-height: 1.45; margin-top: 0; }
-.tld-line { font-size: clamp(18px, 2.3vw, 32px); margin-top: 6px; }
-.tld-line .sale-tag { font-size: 0.55em; font-weight: 700; letter-spacing: 0.14em; color: var(--red); white-space: nowrap; }
-.cta-tld { margin-top: 12px; font-size: clamp(20px, 2.8vw, 46px); }
-.tlds { display: flex; flex-direction: column; align-items: center; }
-.tlds > b { display: flex; flex-direction: column; align-items: center; }
-.tlds span::after { content: ""; }
-.tlds span:last-child::after { content: ""; }
-.tlds .sale-tag { margin-top: 6px; }
-.solo { font-size: clamp(14px, 1.7vw, 24px); line-height: 1.55; margin-top: 4px; }
-.solo.soft { font-size: clamp(12px, 1.5vw, 21px); }
-.solo.big { font-size: clamp(17px, 2.1vw, 30px); line-height: 1.55; margin-top: 6px; }
-.punchline { font-size: clamp(24px, 3vw, 42px); line-height: 1.3; margin-top: clamp(12px, 2vh, 18px); }
-.cmp { margin-top: clamp(10px, 1.6vh, 14px); }
-.cmp-row { padding-block: clamp(6px, 1vh, 10px); }
-.c1 { font-size: clamp(15px, 1.6vw, 20px); line-height: 1.45; }
-.c2 { font-size: clamp(13px, 1.4vw, 17px); line-height: 1.6; }
-
-/* 阅读段与 CTA */
-.body { margin-top: 8px; font-size: clamp(13px, 1.5vw, 18px); line-height: 1.8; max-width: min(820px, 100%); }
-.narr { margin-top: 0; }
-.narr .body { margin-top: 6px; }
-.pairline { font-size: clamp(14px, 1.7vw, 24px); margin-top: 2px; line-height: 1.65; }
-.cta-brand { margin-top: clamp(14px, 2.2vh, 22px); font-size: clamp(20px, 2.4vw, 34px); }
-.cta-title { font-size: clamp(26px, 2.9vw, 40px); line-height: 1.2; }
-.cta-name { margin-top: 0; font-size: clamp(28px, 3.1vw, 44px); line-height: 1.15; }
-.final-tagline { font-size: clamp(18px, 2.2vw, 30px); line-height: 1.55; margin-top: clamp(12px, 2vh, 18px); }
-
-/* 联系与页脚 */
-.inquiry { margin-top: clamp(10px, 1.6vh, 14px); }
-.inquiry li { padding-block: clamp(6px, 1vh, 9px); }
-.q-key { font-size: 11px; }
-.q-val { font-size: clamp(18px, 1.9vw, 26px); line-height: 1.4; }
-.footer { padding: clamp(14px, 2.2vh, 22px) 24px; }
-.footer p { font-size: 12px; }
-.footer .sub { font-size: 11px; }
-
-@media (max-width: 720px) {
-  .hero { padding-top: 96px; }
-  .tld-line { font-size: clamp(11px, 2.7vw, 14px); }
-  .market .solo { font-size: clamp(9px, 2.6vw, 13px); }
-  .market .solo.big { font-size: clamp(10px, 3vw, 15px); }
-}
-.market .kick { font-weight: 700; font-size: clamp(22px, 2.8vw, 40px); }
-.market .kick b { font-weight: 800; }
-
-/* =========================================================
-   防横向移动（移动端只能上下滑动）
-   ========================================================= */
-html, body { overflow-x: hidden !important; width: 100%; max-width: 100%; }
-body { touch-action: pan-y; overscroll-behavior-x: none; }
-body * { max-width: 100%; }
-.want-hero {
-  font-family: "Arial Black", "Impact", "Segoe UI", Arial, sans-serif;
-  font-weight: 900;
-  font-style: normal;
-  font-size: clamp(46px, 11vw, 170px);
-  line-height: 1.02;
-  letter-spacing: 0.02em;
-  white-space: nowrap;
-  margin-top: 2px;
+.chip {
   color: var(--red);
-  text-shadow:
-    1px 1px 0 #fffaf0,
-    0 0 18px rgba(214, 58, 37, 0.28),
-    0 10px 26px rgba(120, 24, 10, 0.22);
-  position: relative;
-}
-@media (max-width: 720px) {
-  .want-hero { white-space: normal; font-size: clamp(28px, 9vw, 60px); line-height: 1.25; }
+  font-weight: 800;
+  font-size: clamp(17px, 2.2vw, 26px);
+  letter-spacing: 1px;
 }
 
-/* =========================================================
-   窄屏（≤480px / iPhone 8 375px）：整句单行与 PC 一致
-   ========================================================= */
-@media (max-width: 480px) {
-  .intro-big, .solo, .solo.soft, .solo.big, .pairline, .final-tagline,
-  .manifesto .m-line, .manifesto .m-punch, .claim p, .market .kick,
-  .vision-zen, .want-hero { white-space: nowrap; }
-
-  .intro-big { font-size: clamp(8px, 2.8vw, 14px); }
-  .solo { font-size: clamp(8px, 2.5vw, 13px); }
-  .solo.soft { font-size: clamp(7px, 2.2vw, 11px); }
-  .solo.big { font-size: clamp(9px, 2.8vw, 14px); }
-  .pairline { font-size: clamp(8px, 2.5vw, 13px); }
-  .final-tagline { font-size: clamp(8px, 2.5vw, 13px); }
-  .manifesto .m-line { font-size: clamp(9px, 3vw, 15px); }
-  .manifesto .m-punch { font-size: clamp(10px, 3.2vw, 16px); }
-  .claim p { font-size: clamp(10px, 3.2vw, 16px); }
-  .market .kick { font-size: clamp(10px, 3.2vw, 16px); }
-  .vision-zen { font-size: clamp(8px, 2.8vw, 14px); letter-spacing: 0.02em; text-indent: 0; }
-
-  .hero-title { font-size: clamp(32px, 9.5vw, 44px); }
-  .hero-punch { font-size: clamp(24px, 7.5vw, 36px); }
-  .hero-sub { font-size: clamp(18px, 5.5vw, 28px); }
-  .want-hero { font-size: clamp(24px, 8vw, 42px); }
-  .body { font-size: clamp(12px, 3.6vw, 16px); }
-  .market .three-lines { font-size: clamp(7px, 2.3vw, 10px); line-height: 1.8; }
-  .cta-title { font-size: clamp(18px, 5vw, 26px); }
-  .cta-name { font-size: clamp(20px, 5.6vw, 28px); }
-  .q-val { font-size: clamp(16px, 4.6vw, 22px); }
-  .price-num { font-size: clamp(44px, 13vw, 64px); }
-}
-
-/* =========================================================
-   纯白背景 + 688 万红色加粗
-   ========================================================= */
-body, main, .hero, .vision, .manifesto, .claims, .price, .worth,
-.market, .cta-sect, .contact, .footer, .nav {
+/* ---------- 页脚 ---------- */
+.footer {
+  border-top: 1px solid var(--red-line);
   background: #ffffff;
-  background-image: none !important;
+  padding-top: 64px;
 }
-.price-num {
-  background: none !important;
-  -webkit-background-clip: border-box;
-  background-clip: border-box;
+.f-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1.1fr 1.4fr;
+  gap: 48px;
+  text-align: left;
+  align-items: start;
+}
+.f-logo {
+  font-weight: 900;
+  font-size: 22px;
+  letter-spacing: 4px;
+  color: var(--ink);
+}
+.f-brand p {
+  color: var(--gray);
+  font-size: 14px;
+  line-height: 1.9;
+  margin-top: 12px;
+}
+.f-col-h {
+  color: var(--ink);
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+.f-nav {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 26px;
+}
+.f-nav a {
+  color: var(--gray);
+  font-size: 14px;
+  transition: color 0.2s;
+}
+.f-nav a:hover { color: var(--red); }
+.f-contact {
+  display: grid;
+  gap: 12px;
+}
+.f-contact a,
+.f-contact span {
+  color: var(--gray);
+  font-size: 14px;
+  transition: color 0.2s;
+}
+.f-contact a:hover { color: var(--red); }
+.f-bottom {
+  margin-top: 56px;
+  border-top: 1px solid #f0f0f0;
+  padding: 26px 22px 44px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.f-bottom p { color: var(--light); font-size: 13px; letter-spacing: 1px; }
+.f-bottom .fmark {
   color: var(--red);
   font-weight: 900;
+  font-size: 16px;
+  letter-spacing: 2px;
 }
-.price-num b, .price-num span { color: var(--red); font-weight: 900; }
-.vision-tag { font-weight: 900; font-size: clamp(24px, 8.5vw, 150px); line-height: 1.15; }
-.vision-tag .red { font-weight: 900; }
-.vision-zen {
-  margin: 12px auto 0;
-  font-size: clamp(22px, 4.6vw, 76px);
-  font-weight: 700;
-  color: #57462b;
-  letter-spacing: 0.12em;
-  text-indent: 0.12em;
-  line-height: 1.7;
+
+/* =========================================================
+   响应式
+   ========================================================= */
+@media (max-width: 900px) {
+  .nav { display: none; }
+  .top-inner { justify-content: center; }
+  .sec { padding: 72px 0; }
+  .sec.hero { padding: 110px 0 120px; }
+  .grow { grid-template-columns: 1fr; }
+  .grow.gh { display: none; }
+  .grow > span { text-align: center; }
+  .grow .lbl {
+    color: var(--red);
+    font-weight: 800;
+  }
+  .datacards { grid-template-columns: 1fr; gap: 40px 0; max-width: 640px; }
+  .f-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+  .f-nav { justify-items: center; }
+  .f-contact { justify-items: center; }
+  .f-bottom { justify-content: center; flex-direction: column; text-align: center; }
 }
-.vision-zen .red { font-weight: 900; }
-.hero-title { color: #171713; font-weight: 900; }
-.vision h2 { font-size: clamp(30px, 5.2vw, 78px); font-weight: 900; line-height: 1.55; }
+
 @media (max-width: 480px) {
-  .vision h2 { font-size: clamp(26px, 8.6vw, 44px); line-height: 1.5; }
+  body { font-size: 15px; }
+  .sec { padding: 54px 0; }
+  .container { padding: 0 16px; }
+  h2.h2 { font-size: clamp(22px, 6.8vw, 34px); }
+  .h2.sub { font-size: clamp(18px, 5vw, 26px); }
+  .sec.hero { padding: 70px 0 84px; }
+  .hero-sub { margin-top: 12px; }
+  .bigred { font-size: clamp(17px, 5.2vw, 24px); margin-top: 26px; }
+  .bigred.punch { margin-top: 32px; }
+  .num { font-size: clamp(52px, 17vw, 90px); }
+  .lead, .body-mid { margin-top: 14px; }
+  .twrap { margin-top: 24px; }
+  .tbl { font-size: 13px; }
+  .tbl th, .tbl td { padding: 11px 8px; }
+  .cards, .whogrid { gap: 32px 0; margin-top: 34px; }
+  .dn { font-size: clamp(20px, 7vw, 34px); }
+  .dgrid { gap: 14px 14px; margin-top: 36px; }
+  .f { margin-top: 40px; }
+  .cta-sec { padding-bottom: 72px; }
+  .contact-chips { gap: 14px; margin-top: 24px; }
 }
-.footer p { font-size: 12px; }
-.market .three-lines { color: var(--red); font-size: clamp(13px, 1.6vw, 22px); font-weight: 500; text-align: center; max-width: none; width: 100%; line-height: 1.9; }
-.burn { font-weight: 800; color: #171713; font-size: clamp(18px, 2.6vw, 42px); line-height: 1.85; max-width: none; }
-.burn .red { font-weight: 900; }
-@media (max-width: 480px) {
-  .burn { font-size: clamp(12px, 3.8vw, 20px); }
-}
-main { text-align: center; }
-main h1, main h2, main h3, main h4, main p, main ul, main li,
-main span, main a, .hero, .vision, .manifesto, .claims, .price,
-.worth, .market, .cta-sect, .contact, .footer { text-align: center; }
-main ul, main ol { list-style: none; margin-left: auto; margin-right: auto; }
-.inquiry li { justify-content: center; align-items: center; }
